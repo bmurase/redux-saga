@@ -13,7 +13,16 @@ export const cart: Reducer<ICartState> = (state = INITIAL_STATE, action) => {
     switch(action.type) {
       case 'ADD_PRODUCT_TO_CART': {
         const { product } = action.payload;
-        
+
+        const productIndexInCart = draft.items.findIndex(
+          item => item.product.id === product.id
+        );
+
+        if (productIndexInCart >= 0) {
+          draft.items[productIndexInCart].quantity++;
+          break;
+        }
+
         draft.items.push({
           product,
           quantity: 1,
