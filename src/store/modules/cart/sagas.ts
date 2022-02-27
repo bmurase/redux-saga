@@ -4,7 +4,7 @@ import { addProductToCart } from "./actions";
 
 type CheckProductStockRequest = ReturnType<typeof addProductToCart>;
 
-function* checkProductStock({ payload }: any) {
+function* checkProductStock({ payload }: CheckProductStockRequest) {
   const { product } = payload;
   const currentQuantityInCart: number = yield select((state: IState) => {
     return (
